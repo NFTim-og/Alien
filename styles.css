@@ -1,0 +1,80 @@
+body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.241) url("./baralla/background.jpg") no-repeat center center fixed;
+    color:antiquewhite;
+    text-shadow: 4px 4px 6px #000000;
+}
+
+#computer-cards img {
+    width: 125px;
+    height: 175px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow:  2px 2px 5px #000000,
+                 -2px -2px 5px #ffffff;
+}
+
+#player-cards img {
+    width: 125px;
+    height: 175px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow:  2px 2px 15px #000000,
+                 -2px -2px 5px #ffffff;
+}
+
+.firstCardHidden {
+    display: none;
+}
+
+#hit {
+    width: 100px;
+    height: 50px;
+    margin-left: 10px;
+    border-width: 0px;
+    border-radius: 10px;
+    box-shadow:  2px 2px 15px #000000,
+                 -2px -2px 5px #ffffff;
+}
+
+#stand {
+    width: 100px;
+    height: 50px;
+    margin-left: 10px;
+    border-width: 0px;
+    border-radius: 10px;
+    box-shadow:  2px 2px 15px #000000,
+                 -2px -2px 5px #ffffff;
+}
+
+#reset {
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
+    border-width: 0px;
+    border-radius: 10px;
+    box-shadow:  2px 2px 15px #000000,
+                 -2px -2px 5px #ffffff;
+}
+
+#hit, #stand, #reset {
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+#hit:hover {
+    font-weight: bold;
+    box-shadow:  4px 4px 20px #000000,
+                -4px -4px 10px #ffffff;
+}
+
+#stand:hover {
+    font-weight: bold;
+    box-shadow:  4px 4px 20px #000000,
+                -4px -4px 10px #ffffff;
+}
+
+#reset:hover {
+    box-shadow:  4px 4px 20px #000000,
+                -4px -4px 10px #ffffff;
+}
