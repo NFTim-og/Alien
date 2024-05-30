@@ -1,21 +1,33 @@
+//player.js
+
 class Player {
-    constructor(name) {
-        this.name = name;
-        this.cards = [];
-        this.money = 0;
-        this.points = 0;
+    constructor(id) {
+        this.id = id;
+        this.hand = [];
+        this.prison = [];
     }
 
-    calculatePoints() {
-        let points = 0;
-
-        for (let i = 0; i < this.cards.length; i++) {
-            let card = this.cards[i];
-            points += card.getValue();
+    captureAlien(card, pistaCard) {
+        if (this.canCaptureAlien(card, pistaCard)) {
+            this.prison.push(card);
+            this.removeCardFromHand(card);
         }
-        this.points = points;
+    }
 
-        return points;
+    canCaptureAlien(card, pistaCard) {
+        return (
+            (card.value1 === pistaCard.value1 || card.value2 === pistaCard.value2) ||
+            (card.value1 + card.value2 === pistaCard.value1 + pistaCard.value2) ||
+            (Math.abs(card.value1 - card.value2) === Math.abs(pistaCard.value1 - pistaCard.value2))
+        );
+    }
+
+    removeCardFromHand(cardIndex) {
+        this.hand.splice(cardIndex, 1);
+    }
+
+    hasFourCapturedAliens() {
+        return this.prison.length >= 4;
     }
 }
 

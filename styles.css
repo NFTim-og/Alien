@@ -1,80 +1,179 @@
 body {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Teko", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('fondo.webp');
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.player-area {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    margin: 10px;
+    color: white;
+}
+
+#player1-area {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#player2-area {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.hand, .prison {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.drop-zone {
+    width: 100px;
+    height: 120px;
+    background-color: rgba(63, 63, 63, 0.5); 
+    border: 2px dashed #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.deck-zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 100px);
+    transform: translateY(-50%);
+}
+
+#deck-top-card {
+    width: 100px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.card {
+    position: relative;
+    width: 60px;
+    height: 90px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background-color: rgba(93, 93, 93, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    transition: 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1); /* Increase the size of the card on hover */
+}
+
+.card .value1 {
+    position: absolute;
     text-align: center;
-    background: rgba(255, 255, 255, 0.241) url("./baralla/background.jpg") no-repeat center center fixed;
-    color:antiquewhite;
-    text-shadow: 4px 4px 6px #000000;
+    top: 5px;
 }
 
-#computer-cards img {
-    width: 125px;
-    height: 175px;
-    margin: 5px;
+.card .value2 {
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+}
+
+.card img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.end-turn {
+    background-color: rgba(255, 255, 255, 0.8); /* Cyan background */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
     border-radius: 10px;
-    box-shadow:  2px 2px 5px #000000,
-                 -2px -2px 5px #ffffff;
+    margin-left: 10px;
+    transition: 0.3s ease-in-out;
 }
 
-#player-cards img {
-    width: 125px;
-    height: 175px;
-    margin: 5px;
-    border-radius: 10px;
-    box-shadow:  2px 2px 15px #000000,
-                 -2px -2px 5px #ffffff;
+.end-turn:hover {
+    background-color: #000000;
+    color: white;
 }
 
-.firstCardHidden {
+.active {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 2px solid #000000;
+}
+
+.hidden-card {
+    background-image: url('/images/cardback.jpg');
+    background-size: cover;
+    background-position: center;
+    border: none; /* Hide the border if needed */
+    border-radius: 8px;
+}
+
+/* Ensuring that the card content (text or images inside the card div) is not visible */
+.hidden-card .value,
+.hidden-card .value1,
+.hidden-card .value2,
+.hidden-card img {
     display: none;
 }
 
-#hit {
-    width: 100px;
-    height: 50px;
-    margin-left: 10px;
-    border-width: 0px;
-    border-radius: 10px;
-    box-shadow:  2px 2px 15px #000000,
-                 -2px -2px 5px #ffffff;
-}
-
-#stand {
-    width: 100px;
-    height: 50px;
-    margin-left: 10px;
-    border-width: 0px;
-    border-radius: 10px;
-    box-shadow:  2px 2px 15px #000000,
-                 -2px -2px 5px #ffffff;
-}
-
-#reset {
-    width: 100px;
-    height: 30px;
-    margin-left: 10px;
-    border-width: 0px;
-    border-radius: 10px;
-    box-shadow:  2px 2px 15px #000000,
-                 -2px -2px 5px #ffffff;
-}
-
-#hit, #stand, #reset {
-    transition: box-shadow 0.2s ease-in-out;
-}
-
-#hit:hover {
-    font-weight: bold;
-    box-shadow:  4px 4px 20px #000000,
-                -4px -4px 10px #ffffff;
-}
-
-#stand:hover {
-    font-weight: bold;
-    box-shadow:  4px 4px 20px #000000,
-                -4px -4px 10px #ffffff;
-}
-
-#reset:hover {
-    box-shadow:  4px 4px 20px #000000,
-                -4px -4px 10px #ffffff;
+.hidden-content .value,
+.hidden-content .value1,
+.hidden-content .value2,
+.hidden-content img {
+    display: none;
 }

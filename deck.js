@@ -1,12 +1,40 @@
-import Card from './card.js';
+//deck.js
 
 class Deck {
     constructor() {
         this.cards = [];
+        this.generateDeck();
+    }
 
-        for (let suit = 0; suit < 4; suit++) {
-            for (let value = 0; value < 10; value++) {
-                this.cards.push(new Card(suit, value));
+    generateDeck() {
+        //Cartes capturat
+        for (let i = 0; i <= 9; i++) {
+            this.cards.push({ type: 'capturat', value1: i, value2: i });
+        }
+
+        //Cartes pista
+        for (let i = 9; i >= 1; i--) {
+            for (let j = 0; j < i; j++) {
+                this.cards.push({ type: 'pista', value1: i, value2: j });
+            }
+        }
+
+        //Cartes caçarecompensa
+        for (let i = 1; i <= 3; i++) {
+            for (let j = 0; j < 5; j++) {
+                let functionType;
+                if (i === 1) {
+                    functionType = 'robPlayerCard';
+                } else if (i === 2) {
+                    functionType = 'robCapturatFromPlayerPrison';
+                } else {
+                    functionType = 'robCapturatToYourPrison';
+                }
+                this.cards.push({
+                    type: 'cacarecompenses',
+                    function: functionType,
+                    image: `/images/bounty${i}.png`
+                });
             }
         }
     }
@@ -16,18 +44,6 @@ class Deck {
             const j = Math.floor(Math.random() * (i + 1));
             [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
         }
-    }
-
-    pop() {
-        return this.cards.pop();
-    }
-
-    push(card) {
-        this.cards.push(card);
-    }
-
-    toString() {
-        return this.cards.join(', ');
     }
 }
 
